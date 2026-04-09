@@ -8,7 +8,7 @@
 
 ## Description
 
-RNA structure prediction script for <samp>Jousset2026</samp>.
+This pipeline provides a framework for identifying short, structured, and thermodynamically stable RNA–RNA interactions using SHAPE-guided filtering and constrained folding. It further enables comparison of interaction landscapes across different datasets. Its main purpose was to detect stable continuous interactions for <samp>Jousset2026</samp>.
 
 ### Mandatory Prerequisites
 
