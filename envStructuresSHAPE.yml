@@ -1,0 +1,8 @@
+name: structures_SHAPE
+channels:
+  - bioconda
+  - conda-forge
+  - nodefaults
+dependencies:
+  - bioconda::ViennaRNA=2.5.0
+  - conda-forge::numpy=1.24.3
