@@ -80,9 +80,11 @@ import time
 import argparse as ap
 import pickle
 import traceback
+import copy
 from operator import attrgetter
 from matplotlib import pyplot as plt
 from math import isnan
+from numpy import mean, std
 
 ################################################################################
 ## main
@@ -125,8 +127,8 @@ def main(opt):
     jcu_list_2 = (f"{ext2}_unique", unique_list_2, fasta_dict_2, shape_dict_2)
     jco_list_1 = (f"{ext1}_overlap", overlap_list, fasta_dict_1, shape_dict_1)
     jco_list_2 = (f"{ext2}_overlap", overlap_list, fasta_dict_2, shape_dict_2)
-    alist_1 = unique_list_1+overlap_list
-    alist_2 = unique_list_2+overlap_list
+    alist_1 = copy.deepcopy(unique_list_1 + overlap_list)
+    alist_2 = copy.deepcopy(unique_list_2 + overlap_list)
     jca_list_1 = (f"{ext1}", alist_1, fasta_dict_1, shape_dict_1)
     jca_list_2 = (f"{ext2}", alist_2, fasta_dict_2, shape_dict_2)
     junction_dict = dict()
@@ -247,13 +249,9 @@ def compareStructureSHAPE(opt, junction_list_1, junction_list_2):
         jc_list_2 = [jc2 for jc2 in junction_list_2 if jc2.kmer == kmer]
         total1, total2 = len(jc_list_1), len(jc_list_2)
         for it,jc1 in enumerate(jc_list_1):
-            if int(it*10000/total1) % 10 == 0 and int(it*100/total1) != 0:
-                print(f"Status: Comparing {kmer:>2d} jc1 ... {it*100/total1:>4.1f} %             ", end="\r")
             if testCompare(jc1, jc_list_2): unique_list_1.append(jc1)
             else:                           overlap_list.append(jc1)
         for it,jc2 in enumerate(jc_list_2):
-            if int(it*10000/total2) % 10 == 0 and int(it*100/total2) != 0:
-                print(f"Status: Comparing {kmer:>2d} jc2 ... {it*100/total2:>4.1f} %             ", end="\r")
             if testCompare(jc2, jc_list_1): unique_list_2.append(jc2)
     return unique_list_1, unique_list_2, overlap_list
 
