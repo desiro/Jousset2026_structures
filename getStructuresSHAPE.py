@@ -11,6 +11,12 @@ version
 dependencies
     Python v3.9.7, ViennaRNA v2.5.0
 
+description
+    This pipeline provides a framework for identifying short, structured, and thermodynamically
+    stable RNA-RNA interactions using SHAPE-guided filtering and constrained folding. It further
+    enables comparison of interaction landscapes across different datasets. Its main purpose was
+    to detect stable continuous interactions for Jousset2026.
+
 ################################################################
 
 --prefix,-pfx
